@@ -4,6 +4,7 @@ import './App.css'
 import {guessRandom} from '../api.ts'
 import {Guess} from './models/api.ts'
 import {GameResult} from './models/game.ts'
+import {guessWord} from './ai.ts'
 
 function newSeed() {
     return 100
@@ -26,8 +27,11 @@ function App() {
             if (result?.length !== 5) throw new Error('Unexpected API result')
             console.log(result)
             const guess: Guess = {slots: result}
+            const aiGuess = guessWord([...guesses, guess])
+            console.log(aiGuess)
             setGuesses(g => ([...g, guess]))
-            if (guesses.length > 0) {
+
+            if (guesses.length > 4) {
                 setResult('lose')
             }
         } catch (err) {
