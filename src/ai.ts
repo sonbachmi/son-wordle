@@ -1,41 +1,33 @@
-import validWords from './valid-wordle-words.txt?raw'
+import validWords from './valid-wordle-words.json'
 import {Guess} from './models/api.ts'
 
-const words = validWords.split('\n')
-console.log(words)
+/**
+ * Check a guess if its valid based on results of past guesses
+ * @param word
+ * @param guesses List of guess results as returned by API
+ *
+ */
 
 export function isValidWord(word: string, guesses: Guess[]) {
     let valid = true
     for (const guess of guesses) {
-        const guessWord = guess.slots.map(s => s.guess).join('')
-        if (guessWord === word) continue
-        for (const slot of guess.slots) {
-            switch (slot.result) {
-                case 'absent':
-                    if (word.includes(slot.guess)) {
-                        valid = false
-                        break
-                    }
-                    break
-                case 'present':
-                    if (!word.includes(slot.guess)) {
-                        valid = false
-                        break
-                    }
-                    break
-                case 'correct':
-                    if (word[slot.slot] !== slot.guess) {
-                        valid = false
-                        break
-                    }
-                    break
-            }
+        if (guess.word === word) {
+            valid = false
+            break
         }
-        if (valid) {
-            return true
+        if (guess.slots.some(slot => {
+            if (slot.result === 'absent')
+                return word.includes(slot.guess)
+            else if (slot.result === 'present')
+                return !word.includes(slot.guess) || word.charAt(slot.slot) === slot.guess
+            else if (slot.result === 'correct')
+                return word.charAt(slot.slot) !== slot.guess
+            return false
+        })) {
+            valid = false
         }
     }
-    return false
+    return valid
 }
 
 /**
@@ -45,9 +37,15 @@ export function isValidWord(word: string, guesses: Guess[]) {
  */
 
 export function guessWord(guesses: Guess[]) {
-    for (const word of words) {
-        if (isValidWord(word, guesses)) return true
+    if (!guesses?.length) {
+        return 'tales'
     }
-    return false
+    for (const word of validWords) {
+        if (isValidWord(word, guesses)) return word
+    }
+    return null
 }
 
+export function isCorrectGuess(guess: Guess) {
+    return guess.slots.every(slot => slot.result === 'correct')
+}

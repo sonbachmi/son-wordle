@@ -9,11 +9,11 @@
     display: flex;
     flex-direction: column;
     gap: .4em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
+    align-items: center;
 }
 
 .guess {
-    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -43,9 +43,17 @@
 }
 
 form {
-    input {
+    input[type=text] {
         font-size: 1.5em;
         padding: .5em;
+        text-align: center;
+        width: 6em;
+        margin-right: 1em;
+    }
+    input[type=checkbox] {
+        font-size: 1.5em;
+    }
+    label {
         margin-right: 1em;
     }
 }
@@ -54,4 +62,7 @@ form {
     color: crimson;
     font-weight: bold;
     font-size: 1.2em;
+    .message {
+        margin: .2em 0;
+    }
 }

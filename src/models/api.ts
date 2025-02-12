@@ -7,5 +7,6 @@ export interface GuessSlot {
 }
 
 export interface Guess {
+    word: string
     slots: GuessSlot[]
 }

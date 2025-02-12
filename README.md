@@ -20,5 +20,8 @@ npm run test
 ## AI Mode
 
 Beside user interactively guessing on their own, there is an AI mode which guesses automatically. 
-The code uses list of valid 5-letter words from this public gist:
+The code uses a list of valid 5-letter words from this public gist:
 https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93
+This list is basic, without any heuristics like word frequency so the algorithm is not very smart for now. 
+
+For this reason, the word size is limited to 5 like Wordle though the API does support setting this size.
