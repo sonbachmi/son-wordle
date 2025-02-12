@@ -1,0 +1,57 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.guesses {
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+    margin-bottom: 1em;
+}
+
+.guess {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.slot {
+    width: 2em;
+    height: 2em;
+    font-size: 2em;
+    flex: 0 0 auto;
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.absent {
+        background-color: #787c7f;
+    }
+
+    &.present {
+        background-color: #c8b653;
+    }
+
+    &.correct {
+        background-color: #6ca965;
+    }
+}
+
+form {
+    input {
+        font-size: 1.5em;
+        padding: .5em;
+        margin-right: 1em;
+    }
+}
+
+.result {
+    color: crimson;
+    font-weight: bold;
+    font-size: 1.2em;
+}

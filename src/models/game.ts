@@ -1,0 +1,1 @@
+export type GameResult = null | 'win' | 'lose'
