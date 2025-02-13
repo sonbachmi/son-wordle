@@ -9,13 +9,25 @@
     display: flex;
     flex-direction: column;
     gap: .4em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     align-items: center;
 }
 
 .guess {
     display: flex;
     flex-direction: row;
+
+    &.preview {
+        margin-top: 2em;
+        background: black;
+        gap: 2px;
+        padding: 2px;
+
+        .slot {
+            border: none;
+        }
+    }
+
 }
 
 .slot {
@@ -28,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
 
     &.absent {
         background-color: #787c7f;
@@ -50,9 +63,15 @@ form {
         width: 6em;
         margin-right: 1em;
     }
+
+    input::placeholder {
+        font-size: 1rem;
+    }
+
     input[type=checkbox] {
         font-size: 1.5em;
     }
+
     label {
         margin-right: 1em;
     }
@@ -62,6 +81,7 @@ form {
     color: crimson;
     font-weight: bold;
     font-size: 1.2em;
+
     .message {
         margin: .2em 0;
     }

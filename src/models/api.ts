@@ -3,7 +3,7 @@ type GuessResult = 'absent' | 'present' | 'correct'
 export interface GuessSlot {
     slot: number
     guess: string
-    result: GuessResult
+    result: GuessResult | null
 }
 
 export interface Guess {
